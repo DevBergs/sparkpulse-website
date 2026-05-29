@@ -119,14 +119,29 @@ form?.addEventListener('submit', async (e) => {
   if (!email) return;
 
   const btn = form.querySelector('.email-submit');
-  btn.textContent = '✓ You\'re on the list';
-  btn.style.background = 'var(--green)';
+  btn.textContent = 'Sending...';
   btn.disabled = true;
 
   Analytics.track(Analytics.events.EMAIL_SUBMITTED, { email_domain: email.split('@')[1] });
 
-  // TODO: send to your backend / Mailchimp / ConvertKit
-  // await fetch('/api/beta', { method: 'POST', body: JSON.stringify({ email }) });
+  try {
+    const res = await fetch('https://aios.lv/api/beta.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
+    });
+    const data = await res.json();
+    if (data.success) {
+      btn.textContent = '✓ You\'re on the list';
+      btn.style.background = 'var(--green)';
+    } else {
+      btn.textContent = 'Try again';
+      btn.disabled = false;
+    }
+  } catch {
+    btn.textContent = '✓ You\'re on the list'; // show success even on network error
+    btn.style.background = 'var(--green)';
+  }
 });
 
 /* ── Marquee pause on hover ──────────────────────────────────── */
