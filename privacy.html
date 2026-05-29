@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Spark Pulse</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .legal { max-width: 720px; margin: 0 auto; padding: 120px clamp(20px,5vw,40px) 80px; }
+    .legal h1 { font-family: var(--font-serif); font-size: clamp(2rem,4vw,3rem); margin-bottom: 8px; }
+    .legal .meta { color: var(--ink-ghost); font-size: 0.875rem; margin-bottom: 48px; }
+    .legal h2 { font-family: var(--font-serif); font-size: 1.3rem; margin-top: 40px; margin-bottom: 12px; }
+    .legal p, .legal li { font-size: 1rem; color: var(--ink-muted); line-height: 1.8; margin-bottom: 12px; }
+    .legal ul { padding-left: 20px; margin-bottom: 16px; }
+    .legal a { color: var(--orange); }
+    .legal .highlight { background: var(--orange-soft); border-left: 3px solid var(--orange); padding: 16px 20px; border-radius: 0 8px 8px 0; margin: 24px 0; }
+    .legal .highlight p { margin: 0; color: var(--ink); }
+    nav { position: relative; }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo"><span class="dot"></span>Spark Pulse</div>
+  <a href="/" style="font-size:0.875rem;color:var(--ink-muted);">← Back</a>
+</nav>
+
+<div class="legal">
+  <h1>Privacy Policy</h1>
+  <p class="meta">Last updated: May 2025 · Effective immediately</p>
+
+  <div class="highlight">
+    <p><strong>Short version:</strong> We collect only what's needed to run the app. We never sell your data. You can delete everything at any time. This app is not a medical tool.</p>
+  </div>
+
+  <h2>1. Who we are</h2>
+  <p>Spark Pulse is an iOS application developed by Aivis Karlsbergs (Latvia, EU). For questions, contact: <a href="mailto:karlsbergsaivis@gmail.com">karlsbergsaivis@gmail.com</a></p>
+  <p>This app is not a medical device, diagnosis tool, therapy, or treatment. It is a focus and execution support tool.</p>
+
+  <h2>2. What data we collect</h2>
+  <p>We collect the following data when you use Spark Pulse:</p>
+
+  <p><strong>Account data (if you sign in with Apple):</strong></p>
+  <ul>
+    <li>Email address (optional, provided by Apple)</li>
+    <li>Display name (optional, provided by Apple)</li>
+    <li>Firebase Auth UID (anonymous or linked)</li>
+  </ul>
+
+  <p><strong>App content data (only if cloud sync is enabled):</strong></p>
+  <ul>
+    <li>Daily logs — mood, energy, sleep hours, stress level, hydration, food types, notes</li>
+    <li>Tasks and reminders — titles, dates, completion status</li>
+    <li>Routines and activations — titles, categories, linked states, completion history</li>
+    <li>Focus sessions — duration, start time, session type</li>
+    <li>Ideas — text and voice memo transcriptions</li>
+    <li>Profile — display name, bio, avatar (emoji or photo)</li>
+  </ul>
+
+  <p><strong>Technical data (automatically collected):</strong></p>
+  <ul>
+    <li>Crash reports via Firebase Crashlytics</li>
+    <li>Anonymous app usage events (feature usage, session length) via Firebase Analytics</li>
+    <li>Device timezone (for hydration pacing)</li>
+    <li>App version</li>
+  </ul>
+
+  <p><strong>What we do NOT collect:</strong></p>
+  <ul>
+    <li>Location data</li>
+    <li>Health data (we do not use Apple HealthKit)</li>
+    <li>Contacts</li>
+    <li>Camera or microphone beyond in-app voice capture (stored locally only)</li>
+    <li>Advertising identifiers</li>
+    <li>Browsing history</li>
+  </ul>
+
+  <h2>3. Why we collect data</h2>
+  <ul>
+    <li><strong>App functionality</strong> — tasks, routines, and daily logs are stored to provide the core app experience</li>
+    <li><strong>Cloud sync</strong> — if enabled, your data syncs across devices via Firebase Firestore</li>
+    <li><strong>Personalization</strong> — pattern detection for adaptive suggestions (processed on-device using your own data)</li>
+    <li><strong>Crash fixing</strong> — anonymized crash reports help us identify and fix bugs</li>
+    <li><strong>App improvement</strong> — anonymous feature usage analytics help us understand what works</li>
+  </ul>
+
+  <h2>4. Data storage and security</h2>
+  <p>Data is stored in two places:</p>
+  <ul>
+    <li><strong>On device</strong> — using Apple SwiftData (encrypted by iOS device encryption)</li>
+    <li><strong>Cloud</strong> — using Google Firebase Firestore (only if you enable sync). Data is isolated per user — no user can access another user's data. Firestore security rules enforce this at the database level.</li>
+  </ul>
+  <p>All data transmission uses HTTPS/TLS. Firebase Auth sessions are secured by Google's infrastructure.</p>
+
+  <h2>5. Third-party services</h2>
+  <ul>
+    <li><strong>Firebase (Google)</strong> — Authentication, Firestore database, Crashlytics, Analytics. <a href="https://firebase.google.com/support/privacy" target="_blank">Firebase Privacy Policy</a></li>
+    <li><strong>Apple</strong> — Sign in with Apple, App Store, device encryption. <a href="https://www.apple.com/privacy" target="_blank">Apple Privacy Policy</a></li>
+  </ul>
+  <p>We do not use any advertising networks, data brokers, or tracking SDKs.</p>
+
+  <h2>6. Your rights (GDPR — EU users)</h2>
+  <p>As a user in the European Union, you have the following rights:</p>
+  <ul>
+    <li><strong>Access</strong> — request a copy of your data</li>
+    <li><strong>Correction</strong> — correct inaccurate data</li>
+    <li><strong>Deletion</strong> — delete your account and all associated data</li>
+    <li><strong>Portability</strong> — receive your data in a machine-readable format</li>
+    <li><strong>Objection</strong> — object to processing for specific purposes</li>
+    <li><strong>Withdrawal of consent</strong> — you can disable cloud sync at any time in Settings</li>
+  </ul>
+  <p>To exercise any of these rights, email <a href="mailto:karlsbergsaivis@gmail.com">karlsbergsaivis@gmail.com</a> or use the in-app deletion flow (Settings → Account → Delete Account).</p>
+
+  <h2>7. Data deletion</h2>
+  <p>You can delete your account and all data at any time:</p>
+  <ul>
+    <li><strong>In-app:</strong> Settings → Account → Delete Account & All Data</li>
+    <li><strong>By email:</strong> Send deletion request to <a href="mailto:karlsbergsaivis@gmail.com">karlsbergsaivis@gmail.com</a></li>
+    <li><strong>Web form:</strong> <a href="/delete-account">sparkpulse.app/delete-account</a></li>
+  </ul>
+  <p>Deletion removes: Firebase Auth account, all Firestore documents, and local SwiftData on device. Crashlytics reports are anonymized and cannot be linked to you after deletion.</p>
+
+  <h2>8. Data retention</h2>
+  <p>Data is retained as long as you have an account. If you do not sign in for 12 consecutive months, we may delete inactive accounts with advance email notice (if email is available).</p>
+
+  <h2>9. Children</h2>
+  <p>Spark Pulse is not directed at children under 13. We do not knowingly collect data from children under 13. If you believe a child has provided us with personal data, contact us immediately.</p>
+
+  <h2>10. Changes to this policy</h2>
+  <p>If we make material changes to this policy, we will notify you via the app and update the "Last updated" date above. Continued use of the app after changes constitutes acceptance.</p>
+
+  <h2>11. Contact</h2>
+  <p>Questions or requests: <a href="mailto:karlsbergsaivis@gmail.com">karlsbergsaivis@gmail.com</a></p>
+  <p>Response time: within 30 days (GDPR requirement).</p>
+</div>
+</body>
+</html>

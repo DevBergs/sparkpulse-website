@@ -1,0 +1,19 @@
+Screenshots needed for website phone preview section:
+
+1. dashboard.png   — Dashboard with State Engine (Locked In / Scattered / Flat / Overloaded)
+2. focus-timer.png — Focus Session timer running
+3. activations.png — Activations Library or Routines screen
+
+HOW TO CAPTURE:
+  Xcode → Run app on iPhone 15 Pro Max Simulator
+  Navigate to each screen
+  Simulator menu: File → Save Screen (Cmd+S)
+  Save with the filenames above into this folder
+
+RECOMMENDED SIZE: 390 x 844px (iPhone 15 Pro Max native) or any 9:19.5 ratio
+FORMAT: PNG or JPG (PNG preferred for sharpness)
+
+After adding files, commit and push to GitHub:
+  git add screenshots/
+  git commit -m "Add app screenshots"
+  git push
