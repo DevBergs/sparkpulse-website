@@ -92,10 +92,11 @@ nav.scrolled { box-shadow: 0 2px 24px rgba(0,0,0,0.06); }
   font-size: 1.2rem; font-weight: 700;
   display: flex; align-items: center; gap: 8px;
 }
-.nav-logo .dot {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: var(--orange);
-  animation: pulse-dot 2.5s ease-in-out infinite;
+.nav-icon {
+  width: 28px; height: 28px;
+  border-radius: 7px;
+  object-fit: cover;
+  flex-shrink: 0;
 }
 @keyframes pulse-dot {
   0%, 100% { opacity: 1; transform: scale(1); }
