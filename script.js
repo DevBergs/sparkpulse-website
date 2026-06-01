@@ -112,13 +112,38 @@ document.querySelectorAll('.state-card').forEach(el => {
 });
 
 /* ── Email form ──────────────────────────────────────────────── */
+const STORAGE_KEY = 'sp_beta_submitted';
 const form = document.querySelector('#beta-form');
+const btn  = form?.querySelector('.email-submit');
+const inp  = form?.querySelector('.email-input');
+
+// Bug 2: ja jau pieteicies — rāda ziņu uzreiz
+if (form && localStorage.getItem(STORAGE_KEY)) {
+  inp.value    = localStorage.getItem(STORAGE_KEY + '_email') || '';
+  inp.disabled = true;
+  btn.textContent = '✓ Already on the list';
+  btn.style.background = 'var(--green)';
+  btn.disabled = true;
+}
+
+function scrollToHero() {
+  document.querySelector('#hero').scrollIntoView({ behavior: 'smooth' });
+}
+
 form?.addEventListener('submit', async (e) => {
   e.preventDefault();
-  const email = form.querySelector('.email-input').value.trim();
+  const email = inp.value.trim();
   if (!email) return;
 
-  const btn = form.querySelector('.email-submit');
+  // Bug 2: pārbauda localStorage pirms sūtīšanas
+  if (localStorage.getItem(STORAGE_KEY)) {
+    btn.textContent = '✓ Already on the list';
+    btn.style.background = 'var(--green)';
+    btn.disabled = true;
+    setTimeout(scrollToHero, 1500); // Bug 1
+    return;
+  }
+
   btn.textContent = 'Sending...';
   btn.disabled = true;
 
@@ -131,16 +156,26 @@ form?.addEventListener('submit', async (e) => {
       body: JSON.stringify({ email })
     });
     const data = await res.json();
-    if (data.success) {
+    if (data.success || data.new === false) {
+      // new === false = e-pasts jau DB, bet veiksmīgi
+      localStorage.setItem(STORAGE_KEY, '1');
+      localStorage.setItem(STORAGE_KEY + '_email', email);
       btn.textContent = '✓ You\'re on the list';
       btn.style.background = 'var(--green)';
+      inp.disabled = true;
+      setTimeout(scrollToHero, 2000); // Bug 1: pēc 2s atiet uz hero
     } else {
       btn.textContent = 'Try again';
       btn.disabled = false;
     }
   } catch {
-    btn.textContent = '✓ You\'re on the list'; // show success even on network error
+    // Tīkla kļūda — uzrādām panākumus lai netraucētu UX
+    localStorage.setItem(STORAGE_KEY, '1');
+    localStorage.setItem(STORAGE_KEY + '_email', email);
+    btn.textContent = '✓ You\'re on the list';
     btn.style.background = 'var(--green)';
+    inp.disabled = true;
+    setTimeout(scrollToHero, 2000); // Bug 1
   }
 });
 
