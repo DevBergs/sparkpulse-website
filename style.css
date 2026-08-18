@@ -432,22 +432,25 @@ nav.scrolled { box-shadow: 0 2px 24px rgba(0,0,0,0.06); }
 .state-card.scatter { background: #FFF7ED; border: 1px solid rgba(194,65,12,0.12); }
 .state-card.flat    { background: #EFF6FF; border: 1px solid rgba(37,99,235,0.12); }
 .state-card.over    { background: #FFFBEB; border: 1px solid rgba(180,83,9,0.12); }
-.state-emoji { font-size: 2.5rem; margin-bottom: 16px; }
+.state-emoji { margin-bottom: 16px; position: relative; z-index: 1; }
+.state-emoji img { width: 64px; height: 64px; object-fit: contain; display: block; }
 .state-card h3 {
   font-family: var(--font-serif);
   font-size: 1.5rem; font-weight: 700;
   margin-bottom: 8px;
+  position: relative; z-index: 1;
 }
-.state-card p { font-size: 0.9rem; line-height: 1.65; }
+.state-card p { font-size: 0.9rem; line-height: 1.65; position: relative; z-index: 1; }
 .state-card.locked  h3, .state-card.locked  p { color: #166534; }
 .state-card.scatter h3, .state-card.scatter p { color: #9A3412; }
 .state-card.flat    h3, .state-card.flat    p { color: #1E40AF; }
 .state-card.over    h3, .state-card.over    p { color: #92400E; }
 .state-bg {
-  position: absolute; right: -20px; bottom: -20px;
-  font-size: 8rem; opacity: 0.06;
+  position: absolute; right: -28px; bottom: -28px;
+  opacity: 0.10;
   pointer-events: none; user-select: none;
 }
+.state-bg img { width: 200px; height: 200px; object-fit: contain; }
 
 /* ── App preview ─────────────────────────────────────────────── */
 #preview {
