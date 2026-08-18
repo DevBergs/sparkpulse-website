@@ -79,18 +79,14 @@ window.addEventListener('scroll', () => {
   });
 }, { passive: true });
 
-/* ── Hero CTA ────────────────────────────────────────────────── */
+/* ── Hero / Nav CTA ──────────────────────────────────────────── */
+// Both are real links straight to the App Store now — just track the click,
+// no scroll-to-waitlist behavior needed anymore.
 document.querySelectorAll('[data-action="hero-cta"]').forEach(el => {
-  el.addEventListener('click', () => {
-    Analytics.track(Analytics.events.HERO_CTA);
-    document.querySelector('#beta').scrollIntoView({ behavior: 'smooth' });
-  });
+  el.addEventListener('click', () => Analytics.track(Analytics.events.HERO_CTA));
 });
-
-/* ── Nav CTA ─────────────────────────────────────────────────── */
 document.querySelector('[data-action="nav-cta"]')?.addEventListener('click', () => {
   Analytics.track(Analytics.events.NAV_CTA);
-  document.querySelector('#beta').scrollIntoView({ behavior: 'smooth' });
 });
 
 /* ── Feature hover tracking ──────────────────────────────────── */
@@ -109,74 +105,6 @@ document.querySelectorAll('.state-card').forEach(el => {
       state: el.dataset.state
     });
   });
-});
-
-/* ── Email form ──────────────────────────────────────────────── */
-const STORAGE_KEY = 'sp_beta_submitted';
-const form = document.querySelector('#beta-form');
-const btn  = form?.querySelector('.email-submit');
-const inp  = form?.querySelector('.email-input');
-
-// Bug 2: ja jau pieteicies — rāda ziņu uzreiz
-if (form && localStorage.getItem(STORAGE_KEY)) {
-  inp.value    = localStorage.getItem(STORAGE_KEY + '_email') || '';
-  inp.disabled = true;
-  btn.textContent = '✓ Already on the list';
-  btn.style.background = 'var(--green)';
-  btn.disabled = true;
-}
-
-function scrollToHero() {
-  document.querySelector('#hero').scrollIntoView({ behavior: 'smooth' });
-}
-
-form?.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const email = inp.value.trim();
-  if (!email) return;
-
-  // Bug 2: pārbauda localStorage pirms sūtīšanas
-  if (localStorage.getItem(STORAGE_KEY)) {
-    btn.textContent = '✓ Already on the list';
-    btn.style.background = 'var(--green)';
-    btn.disabled = true;
-    setTimeout(scrollToHero, 1500); // Bug 1
-    return;
-  }
-
-  btn.textContent = 'Sending...';
-  btn.disabled = true;
-
-  Analytics.track(Analytics.events.EMAIL_SUBMITTED, { email_domain: email.split('@')[1] });
-
-  try {
-    const res = await fetch('https://aios.lv/api/beta.php', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email })
-    });
-    const data = await res.json();
-    if (data.success || data.new === false) {
-      // new === false = e-pasts jau DB, bet veiksmīgi
-      localStorage.setItem(STORAGE_KEY, '1');
-      localStorage.setItem(STORAGE_KEY + '_email', email);
-      btn.textContent = '✓ You\'re on the list';
-      btn.style.background = 'var(--green)';
-      inp.disabled = true;
-      setTimeout(scrollToHero, 2000); // Bug 1: pēc 2s atiet uz hero
-    } else {
-      btn.textContent = 'Try again';
-      btn.disabled = false;
-    }
-  } catch {
-    // Tīkla kļūda — uzrādām panākumus lai netraucētu UX
-    localStorage.setItem(STORAGE_KEY, '1');
-    localStorage.setItem(STORAGE_KEY + '_email', email);
-    btn.textContent = '✓ You\'re on the list';
-    btn.style.background = 'var(--green)';
-    inp.disabled = true;
-    setTimeout(scrollToHero, 2000); // Bug 1
-  }
 });
 
 /* ── Marquee pause on hover ──────────────────────────────────── */
